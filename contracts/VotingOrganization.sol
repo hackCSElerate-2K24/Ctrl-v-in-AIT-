@@ -8,6 +8,7 @@ contract VotingOrganization {
 
     uint256 private voterIdCounter;
     uint256 private candidateIdCounter;
+    uint256 private customerIdCounter; 
 
     enum ApprovalStatus {
         Pending,
@@ -34,13 +35,31 @@ contract VotingOrganization {
         uint256 voteCount;
         string message;
     }
+    struct Customer {
+        address customerAddress;
+        string name;
+        string ipfs;
+        uint256 registerId;
+        ApprovalStatus status;
+        string message;
+    }
 
-    mapping(address => Voter) public voters;
+    // mapping(address => Voter) public voters;
+    // mapping(address => Candidate) public candidates;
+    // address[] public registeredVoters;
+    // address[] public registeredCandidates;
+    // address[] public approvedVoters;
+    // address[] public approvedCandidates;
+    // address[] public votersWhoVoted;
+     mapping(address => Voter) public voters;
     mapping(address => Candidate) public candidates;
+    mapping(address => Customer) public customers; // Mapping for customers
     address[] public registeredVoters;
     address[] public registeredCandidates;
+    address[] public registeredCustomers; // Array for registered customers
     address[] public approvedVoters;
     address[] public approvedCandidates;
+    address[] public approvedCustomers; // Array for approved customers
     address[] public votersWhoVoted;
 
     modifier onlyOwner() {
@@ -60,6 +79,7 @@ contract VotingOrganization {
         owner = msg.sender;
         voterIdCounter = 1;
         candidateIdCounter = 1;
+        customerIdCounter = 1; // Initialize customer counter
     }
 
     function registerVoter(string memory _name, string memory _ipfs) public {
@@ -94,6 +114,19 @@ contract VotingOrganization {
         registeredCandidates.push(msg.sender);
         candidateIdCounter++;
     }
+    function registerCustomer(string memory _name, string memory _ipfs) public {
+        Customer memory newCustomer = Customer(
+            msg.sender,
+            _name,
+            _ipfs,
+            customerIdCounter,
+            ApprovalStatus.Pending,
+            "Currently your registration is pending"
+        );
+        customers[msg.sender] = newCustomer;
+        registeredCustomers.push(msg.sender);
+        customerIdCounter++;
+    }
 
     function approveVoter(
         address _voterAddress,
@@ -120,6 +153,16 @@ contract VotingOrganization {
         approvedCandidates.push(_candidateAddress);
     }
 
+ function approveCustomer(
+        address _customerAddress,
+        string memory _message
+    ) public onlyOwner {
+        Customer storage customer = customers[_customerAddress];
+        require(customer.customerAddress != address(0), "Customer not found.");
+        customer.status = ApprovalStatus.Approved;
+        customer.message = _message;
+        approvedCustomers.push(_customerAddress);
+    }
     function rejectVoter(
         address _voterAddress,
         string memory _message
@@ -143,6 +186,15 @@ contract VotingOrganization {
         candidate.message = _message;
         approvedCandidates.push(_candidateAddress);
     }
+ function rejectCustomer(
+        address _customerAddress,
+        string memory _message
+    ) public onlyOwner {
+        Customer storage customer = customers[_customerAddress];
+        require(customer.customerAddress != address(0), "Customer not found.");
+        customer.status = ApprovalStatus.Rejected;
+        customer.message = _message;
+    }
 
     function setVotingPeriod(
         uint256 _startTime,
@@ -160,7 +212,13 @@ contract VotingOrganization {
         }
         return voterArray;
     }
-
+ function getAllRegisteredCustomers() public view returns (Customer[] memory) {
+        Customer[] memory customerArray = new Customer[](registeredCustomers.length);
+        for (uint256 i = 0; i < registeredCustomers.length; i++) {
+            customerArray[i] = customers[registeredCustomers[i]];
+        }
+        return customerArray;
+    }
     function getAllRegisteredCandidates()
         public
         view
@@ -182,7 +240,13 @@ contract VotingOrganization {
         }
         return voterArray;
     }
-
+function getAllApprovedCustomers() public view returns (Customer[] memory) {
+        Customer[] memory customerArray = new Customer[](approvedCustomers.length);
+        for (uint256 i = 0; i < approvedCustomers.length; i++) {
+            customerArray[i] = customers[approvedCustomers[i]];
+        }
+        return customerArray;
+    }
     function getAllApprovedCandidates()
         public
         view

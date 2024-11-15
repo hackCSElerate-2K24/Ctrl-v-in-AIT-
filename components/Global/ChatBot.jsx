@@ -10,7 +10,7 @@ const data = {
       "How can I help you?",
     ],
     options: [
-      "Voting",
+      "Donating",
       "Candidate",
       "About_democrachain",
       "Feedback",
@@ -25,9 +25,9 @@ const data = {
   about_democrachain: {
     title: ["About_democrachain"],
     options: [
-      "Our Democrachain voting system ensures that each vote is securely encrypted and stored on an immutable ledger, preventing tampering and guaranteeing the integrity of the election results.",
+      ".",
       "The transparent nature allows for real-time auditing and verification of votes by anyone, ensuring a fair and open voting process.",
-      "Voters' identities are kept anonymous, maintaining privacy while allowing them to cast their votes from anywhere with internet access, making the system both secure and convenient.",
+      "Donours' identities are kept anonymous, maintaining privacy while allowing them to cast their votes from anywhere with internet access, making the system both secure and convenient.",
     ],
     url: {
       more: "#",

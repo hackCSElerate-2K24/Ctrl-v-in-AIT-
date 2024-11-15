@@ -76,7 +76,7 @@ const Details = ({
                     {candidate?.registerId}
                   </li>
                   <li>
-                    <strong>AMOUNTCount:&nbsp;&nbsp; </strong>{" "}
+                    <strong>VoteCount:&nbsp;&nbsp; </strong>{" "}
                     {candidate?.voteCount}
                   </li>
                 </ul>
@@ -326,7 +326,7 @@ const Details = ({
             {path == "candidate" && (
               <>
                 <h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
-                  Electoral Bond
+                  Donation Details
                 </h1>
                 <form
                   onSubmit={async (e) => {
