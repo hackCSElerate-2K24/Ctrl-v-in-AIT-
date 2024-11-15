@@ -168,7 +168,7 @@ const Header = () => {
                   <li>
                     <Link href="/voted-voters">
                       <a className="dropdown-item header-hover-link">
-                        Voted Donurs
+                         Donurs
                       </a>
                     </Link>
                   </li>
@@ -183,6 +183,37 @@ const Header = () => {
                   </Link>
                 </li>
               )}
+           <li className="dropdown show-dropdown">
+                <button
+                  type="button"
+                  aria-label="Navbar Dropdown Button"
+                  className="dropdown-nav header-hover-link"
+                >
+                  <Link href="/coustomer">
+                  Customer
+                  </Link>
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link href="/all-customers">
+                      <a className="dropdown-item header-hover-link">
+                        All Customer
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/approved-customers">
+                      <a className="dropdown-item header-hover-link">
+                        Approve Customer
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    
+                  </li>
+                </ul>
+              </li>
+
               <li className="dropdown show-dropdown">
                 <button
                   type="button"

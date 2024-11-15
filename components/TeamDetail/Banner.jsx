@@ -17,7 +17,7 @@ const Banner = () => {
                   className="breadcrumb-item ms-2 ps-7 active"
                   aria-current="page"
                 >
-                  <span>Team Details</span>
+                  <span>Coustomer Details</span>
                 </li>
                 
               </ol>
@@ -27,7 +27,9 @@ const Banner = () => {
         <button>VIDIO CALL</button>
       </div>
     </section>
+    
   );
+  
 };
 
 export default Banner;

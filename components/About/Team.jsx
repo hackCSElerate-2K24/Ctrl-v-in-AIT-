@@ -6,12 +6,12 @@ const devsInfo = [
   {
     name: "Soorya U",
     description: "When I first started trading But with time and experience.",
-    imageUrl: "assets/images/devs/soorya.png",
+    imageUrl: "assets/images/devs/soorfya.png",
   },
   {
     name: "Saanvi M J",
     description: "When I first started trading But with time and experience.",
-    imageUrl: "assets/images/devs/saanvi.jpg",
+    imageUrl: "assets/images/devs/saanvxi.jpg",
   },
   {
     name: "Likhith S V",
