@@ -246,11 +246,11 @@ export const VOTER_DAPP_PROVIDER = ({ children }) => {
 
       await transaction.wait();
       setLoader(false);
-      notifySuccess("Successfully aapprove voter");
+      notifySuccess("Successfully approve doner");
       router.push("/approve-voters");
     } catch (error) {
       setLoader(false);
-      notifySuccess("approving failed, kindly connect to ellection commission");
+      notifySuccess("approving failed");
       console.log(error);
     }
   };

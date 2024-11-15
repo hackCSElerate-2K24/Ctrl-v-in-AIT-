@@ -130,7 +130,7 @@ const voter = () => {
                           className="cmn-btn py-3 px-5 px-lg-6 w-100 d-center"
                           onClick={() => SET_VOTING_PREIOD(voteTime)}
                         >
-                          Set Voting Period
+                          Period
                         </button>
                       </div>
                       <div className="mt-lg-8"></div>
